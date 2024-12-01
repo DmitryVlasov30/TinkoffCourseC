@@ -35,8 +35,8 @@ int32_t main() {
     cin.tie(0);
     int n; cin >> n;
     vector <int> arr;
-	for (int i = 0; i < n; ++i) {
-        int el; cin >> el; arr.emp(arr);
+    for (int i = 0; i < n; ++i) {
+        int el; cin >> el; arr.emp(el);
 	}
 	int max_sum = arr[0], sum = 0, start = 1, end = 1, c_start = 1;
 	for (int i = 0; i < n; ++i) {
