@@ -1,0 +1,78 @@
+//#define _GLIBCXX_DEBUG
+#include <iostream>
+#include <map>
+#include <string>
+#include <stack>
+#include <queue>
+#include <algorithm>
+#include <set>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+#include <limits>
+#include <cmath>
+#include <stdio.h>
+#include <strstream>
+#include <unordered_map>
+#include <unordered_set>
+
+#define int long long
+#define len(x) x.size()
+#define all(x) x.begin(), x.end()
+#define ld long double
+#define fir first
+#define sec second
+#define emp emplace_back
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+const int inf = 1e18;
+
+void merge(vector<int>& arr, int left, int mid, int right){
+    vector<int> res;
+    int i = left, j = mid;
+    while(i < mid && j < right){
+        if (arr[i] < arr[j]){
+            res.emp(arr[i]);
+            ++i;
+        } else {
+            res.emp(arr[j]);
+            ++j;
+        }
+    }
+    while (i < mid){res.emp(arr[i]); ++i;}
+    while (j < right) {res.emp(arr[j]); ++j;}
+    for (int i = 0; i < len(res); ++i){
+        arr[i + left] = res[i];
+    }
+}
+
+void my_sort(vector<int>& arr, int left, int right){
+    if (right - left <= 1){
+        return;
+    }
+
+    int mid = (left+right)/2;
+    my_sort(arr, left, mid);
+    my_sort(arr, mid, right);
+    merge(arr, left, mid, right);
+}
+
+
+int32_t main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    cin >> n;
+    vector<int> arr;
+    for(int i = 0; i < n; ++i){
+        int el; cin >> el; 
+        arr.emp(el);
+    }
+    my_sort(arr, 0, len(arr));
+    for (int i = 0; i < len(arr); ++i){
+        cout << arr[i] << " ";
+    }
+}   
+
