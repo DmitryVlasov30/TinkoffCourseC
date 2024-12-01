@@ -1,0 +1,46 @@
+//#define _GLIBCXX_DEBUG
+#include <iostream>
+#include <map>
+#include <string>
+#include <stack>
+#include <queue>
+#include <algorithm>
+#include <set>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+#include <limits>
+#include <numbers>
+#include <cmath>
+#include <stdio.h>
+#include <strstream>
+#include <unordered_map>
+#include <unordered_set>
+
+#define int long long
+#define len(x) x.size()
+#define all(x) x.begin(), x.end()
+#define ld long double
+
+using namespace std;
+
+
+int32_t main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    cin >> n;
+    vector<int> arr;
+    vector<int> dp(n, 0);
+    for(int i = 0; i < n; ++i){
+        int x;
+        cin >> x;
+        arr.emplace_back(x);
+    }
+    dp[0] = arr[0];
+    dp[1] = arr[1];
+    for (int i = 2; i < n; ++i){
+        dp[i] = min(dp[i-1], dp[i-2])+arr[i];
+    }
+    cout << dp[--n];
+}
